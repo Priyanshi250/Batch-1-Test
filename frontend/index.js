@@ -143,7 +143,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             renderLeaderboard(sortedData);
         });
 
-    } catch (error) {
+    } 
+    document.querySelector('.pin-input').addEventListener('input', validateInput);
+
+function validateInput(e) {
+  const el = e.target;
+
+  if (el.validity.patternMismatch) {
+    el.value = el.value.slice(0, -1);
+    return false;
+  }
+  return true;
+}
+catch (error) {
         console.error('Error fetching data:', error);
     }
 });
